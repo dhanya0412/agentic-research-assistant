@@ -1,6 +1,6 @@
-from groq import Groq
-from config import GROQ_API_KEY
 import logging
+from planner import generate_plan
+from executor import execute_plan
 
 logging.basicConfig(
     filename="logs/agent.log",
@@ -8,18 +8,15 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-client = Groq(api_key=GROQ_API_KEY)
-
-def test_llm_connection():
-    logging.info("Testing Groq LLM connectivity")
-    response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=[
-            {"role": "user", "content": "Say hello in one sentence."}
-        ],
-        temperature=0
-    )
-    print(response.choices[0].message.content)
-
 if __name__ == "__main__":
-    test_llm_connection()
+    goal = "Build a text classification system using machine learning"
+
+    plan = generate_plan(goal)
+    results, memory = execute_plan(plan)
+
+    print("\nExecution Results:")
+    for r in results:
+        print(r)
+
+    print("\nFinal Memory Keys:")
+    print(memory.keys())
