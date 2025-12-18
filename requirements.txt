@@ -1,3 +1,6 @@
 python-dotenv
 groq
 scikit-learn
+numpy
+scipy
+pymupdf

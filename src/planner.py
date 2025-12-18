@@ -84,6 +84,7 @@ Classify the task into ONE of the following intents:
 - PREPROCESS_DATA
 - TRAIN_MODEL
 - EVALUATE_MODEL
+- SUMMARIZE_TEXT
 - OTHER
 
 Return ONLY the intent name. No explanation.
